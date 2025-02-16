@@ -1,6 +1,3 @@
-from multiprocessing.managers import Value
-
-
 class Product:
     def __init__(self, name, price, quantity):
         self.name = name
@@ -8,7 +5,7 @@ class Product:
         self.quantity = quantity
         self.active = True
 
-        if not len(name) or price < 0 or quantity < 0:
+        if not name or price < 0 or quantity < 0:
             raise ValueError("Name can not be empty, price and quantity can not be negative.")
 
     def get_quantity(self) -> int:
@@ -31,12 +28,12 @@ class Product:
         self.active = False
 
     def show(self) -> str:
-        return f"Name, Price={self.price}, Quantity={self.quantity}"
+        print(f"{self.name}, Price={self.price}, Quantity={self.quantity}")
 
     def buy(self, quantity) -> float:
         if quantity < 0:
             raise ValueError("Quantity can not be negative.")
-        if quantity < self.quantity:
+        if quantity > self.quantity:
             raise ValueError("Requested quantity is not available.")
 
         total_price = self.price * quantity
@@ -47,3 +44,15 @@ class Product:
 
         return total_price
 
+bose = Product("Bose QuietComfort Earbuds", price=250, quantity=500)
+mac = Product("MacBook Air M2", price=1450, quantity=100)
+
+print(bose.buy(50))
+print(mac.buy(100))
+print(mac.is_active())
+
+bose.show()
+mac.show()
+
+bose.set_quantity(1000)
+bose.show()
