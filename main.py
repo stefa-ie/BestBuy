@@ -8,6 +8,7 @@ product_list = [ products.Product("MacBook Air M2", price=1450, quantity=100),
 best_buy = store.Store(product_list)
 
 def making_order():
+    "Helper function for the menu/start (initialization function)"
     print("------")
     for index, product in enumerate(best_buy.get_all_products(), start=1):
         print(f"{index}. {product.show()}")
@@ -46,6 +47,8 @@ def making_order():
 
 
 def start():
+    """Within a while loop, user gets a menu to choose options 1-4 to
+    interact with the Best Buy Store. """
     while True:
         print("   Store Menu")
         print("   ----------")
