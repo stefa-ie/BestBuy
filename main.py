@@ -7,6 +7,44 @@ product_list = [ products.Product("MacBook Air M2", price=1450, quantity=100),
                ]
 best_buy = store.Store(product_list)
 
+def making_order():
+    print("------")
+    for index, product in enumerate(best_buy.get_all_products(), start=1):
+        print(f"{index}. {product.show()}")
+    print(("------"))
+    print("When you want to finish order, enter empty text.")
+
+    shopping_cart = []
+    while True:
+        select = input("Which product # do you want? ").strip()
+        quantity = input("What amount do you want? ").strip()
+
+        if not select or not quantity:
+            if not shopping_cart:
+                break
+
+            total_payment = best_buy.order(shopping_cart)
+            print("******** ")
+            print(f"Order made! Total payment: ${total_payment}\n")
+            break
+
+        try:
+            select = int(select)
+            quantity = int(quantity)
+        except ValueError:
+            continue
+
+        if select < 1 or select > len(best_buy.get_all_products()):
+            print("Error adding product!\n")
+        else:
+            selected_product = best_buy.get_all_products()[select - 1]
+            if quantity > selected_product.get_quantity():
+                print("Error while making order! Quantity larger than what exists\n")
+            else:
+                shopping_cart.append((selected_product, quantity))
+                print("Product added to list!\n")
+
+
 def start():
     while True:
         print("   Store Menu")
@@ -18,10 +56,19 @@ def start():
         print("4. Quit")
 
         choice = input("Please choose a number: ")
-        print("------")
+
 
         if choice == "1":
+            print("------")
             for index, product in enumerate(best_buy.get_all_products(), start=1):
-                print(f"{index}. {product.show}")
+                print(f"{index}. {product.show()}")
+        if choice == "2":
+            print(f"Total of {best_buy.get_total_quantity()} items in store")
+        if choice == "3":
+            making_order()
+
+        if choice == "4":
+            return quit()
+
 
 start()
