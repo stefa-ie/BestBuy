@@ -16,7 +16,10 @@ class Product:
         return self.quantity
 
     def set_quantity(self, quantity):
-        """ Setter function for quantity. If quantity reaches 0, deactivates the product. """
+        """
+        Setter function for quantity.
+        If quantity reaches 0, deactivates the product.
+        """
         if quantity < 0:
             raise ValueError("Quantity can not be negative.")
         self.quantity = quantity
