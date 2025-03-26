@@ -8,12 +8,14 @@ class Product:
         if not name or price < 0 or quantity < 0:
             raise ValueError("Name can not be empty, price and quantity can not be negative.")
 
+
     def get_quantity(self) -> int:
         """
         Getter function for quantity.
         Returns the quantity (int).
         """
         return self.quantity
+
 
     def set_quantity(self, quantity):
         """
@@ -26,6 +28,7 @@ class Product:
         if self.quantity == 0:
             self.deactivate()
 
+
     def is_active(self) -> bool:
         """
         Getter function for active.
@@ -33,17 +36,21 @@ class Product:
         """
         return self.active
 
+
     def activate(self):
         """ Activates the product. """
         self.active = True
+
 
     def deactivate(self):
         """ Deactivates the product. """
         self.active = False
 
+
     def show(self) -> str:
         """ Returns a string that represents the product. """
         return f"{self.name}, Price: ${self.price}, Quantity: {self.quantity}"
+
 
     def buy(self, quantity) -> float:
         """
