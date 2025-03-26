@@ -2,7 +2,8 @@
 
 
 ## ✏️ Description
-This is my first Shopping Application using Classes with OOP. 
+This is my first Shopping Application, developed using object-oriented programming (OOP) principles and classes. 
+
 The Basics of the app cover:
 - Displaying all products in store
 - Showing total amount in store
