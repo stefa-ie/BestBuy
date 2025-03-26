@@ -16,6 +16,7 @@ def making_order():
     print("When you want to finish order, enter empty text.")
 
     shopping_cart = []
+
     while True:
         select = input("Which product # do you want? ").strip()
         quantity = input("What amount do you want? ").strip()
