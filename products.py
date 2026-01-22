@@ -1,5 +1,6 @@
 class Product:
     def __init__(self, name, price, quantity):
+        """Initialize a product with name, price, quantity, and active state."""
         self.name = name
         self.price = price
         self.quantity = quantity

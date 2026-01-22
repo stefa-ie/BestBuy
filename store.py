@@ -2,6 +2,7 @@ import products
 
 class Store:
     def __init__(self, products: list):
+        """Initialize the store with a list of products."""
         self.products = products
 
 
@@ -25,7 +26,7 @@ class Store:
 
     def get_all_products(self) -> list:
         """ Returns all products in the store that are active. """
-        return self.products
+        return [product for product in self.products if product.is_active()]
 
 
     def order(self, shopping_list) -> float:

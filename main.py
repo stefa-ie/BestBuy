@@ -2,15 +2,8 @@ import products
 import store
 
 
-product_list = [ products.Product("MacBook Air M2", price=1450, quantity=100),
-                 products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
-                 products.Product("Google Pixel 7", price=500, quantity=250)
-               ]
-best_buy = store.Store(product_list)
-
-
-def making_order():
-    """ Helper function for the menu/start (initialization function) """
+def making_order(best_buy):
+    """Prompt the user to build a shopping cart and place an order."""
     print("------")
     for index, product in enumerate(best_buy.get_all_products(), start=1):
         print(f"{index}. {product.show()}")
@@ -31,10 +24,6 @@ def making_order():
             print("******** ")
             print(f"Order made! Total payment: ${total_payment}\n")
 
-            for product, quantity in shopping_cart:
-                if product.get_quantity() == 0:
-                    product.deactivate()
-
             break
 
         try:
@@ -54,11 +43,8 @@ def making_order():
                 print("Product added to list!\n")
 
 
-def start():
-    """
-    Within a while loop, user gets a menu to choose options 1-4 to
-    interact with the Best Buy Store.
-    """
+def start(best_buy):
+    """Run the interactive menu for the store."""
     while True:
         print("   Store Menu")
         print("   ----------")
@@ -77,10 +63,22 @@ def start():
         if choice == "2":
             print(f"Total of {best_buy.get_total_quantity()} items in store")
         if choice == "3":
-            making_order()
+            making_order(best_buy)
 
         if choice == "4":
             return quit()
 
-if __name__ == '__main__':
-    start()
+
+def main():
+    """Create the store and start the application."""
+    product_list = [
+        products.Product("MacBook Air M2", price=1450, quantity=100),
+        products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+        products.Product("Google Pixel 7", price=500, quantity=250),
+    ]
+    best_buy = store.Store(product_list)
+    start(best_buy)
+
+
+if __name__ == "__main__":
+    main()
